@@ -33,7 +33,7 @@ class Program
         new Order() { OrderId = "O01", OrderDate = "10/25/2020", CustomerId = "C02", ProductId = "P03" },
         new Order() { OrderId = "O02", OrderDate = "10/25/2020", CustomerId = "C04", ProductId = "P04" },
         new Order() { OrderId = "O03", OrderDate = "10/12/2020", CustomerId = "C01", ProductId = "P01" },
-        new Order() { OrderId = "O04", OrderDate = "09/07/2020", CustomerId = "C02", ProductId = "P04" },
+        new Order() { OrderId = "O04", OrderDate = "09/07/2020", CustomerId = "C03", ProductId = "P04" },
         new Order() { OrderId = "O05", OrderDate = "09/07/2020", CustomerId = "C05", ProductId = "P03" }
         };
 
@@ -131,23 +131,39 @@ class Program
         //    Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
         //}
 
-        
-        var q7 = (from temp in customerList
-                  join otemp in orderList
-                  on temp.CustomerId equals otemp.CustomerId
-                  join ptemp in productList
-                  on otemp.ProductId equals ptemp.ProductId
-                  select new
-                  {
-                      temp.CustomerName,
-                      ptemp.ProductName
-                  }).ToList();
+        //Q7
+        //var q7 = (from temp in customerList
+        //          join otemp in orderList
+        //          on temp.CustomerId equals otemp.CustomerId
+        //          join ptemp in productList
+        //          on otemp.ProductId equals ptemp.ProductId
+        //          select new
+        //          {
+        //              temp.CustomerName,
+        //              ptemp.ProductName
+        //          }).ToList();
 
-        foreach(var item in q7)
-        {
-            Console.WriteLine("Customer Name: {0}", item.CustomerName);
-            Console.WriteLine("Product Name: {0}", item.ProductName);
-        }
+        //foreach(var item in q7)
+        //{
+        //    Console.WriteLine("Customer Name: {0}", item.CustomerName);
+        //    Console.WriteLine("Product Name: {0}", item.ProductName);
+        //}
+
+        //Q8
+        //var q8 = from temp in customerList
+        //          join otemp in orderList
+        //          on temp.CustomerId equals otemp.CustomerId
+        //          join ptemp in productList
+        //          on otemp.ProductId equals ptemp.ProductId
+        //          group otemp by ptemp.ProductName;
+
+        //foreach (var item in q8)
+        //{
+        //    Console.WriteLine("Product Name: {0}", item.Key);
+        //    foreach (var entry in item)
+        //        Console.WriteLine("Bought By Cust ID: {0}", entry.CustomerId);
+        //}
+
     }
 
 }
