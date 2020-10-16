@@ -31,10 +31,10 @@ class Program
         List<Order> orderList = new List<Order>()
         {
         new Order() { OrderId = "O01", OrderDate = "10/25/2020", CustomerId = "C02", ProductId = "P03" },
-        new Order() { OrderId = "O02", OrderDate = "08/03/2020", CustomerId = "C04", ProductId = "P04" },
+        new Order() { OrderId = "O02", OrderDate = "10/25/2020", CustomerId = "C04", ProductId = "P04" },
         new Order() { OrderId = "O03", OrderDate = "10/12/2020", CustomerId = "C01", ProductId = "P01" },
         new Order() { OrderId = "O04", OrderDate = "09/07/2020", CustomerId = "C02", ProductId = "P04" },
-        new Order() { OrderId = "O05", OrderDate = "09/19/2020", CustomerId = "C05", ProductId = "P03" }
+        new Order() { OrderId = "O05", OrderDate = "09/07/2020", CustomerId = "C05", ProductId = "P03" }
         };
 
         //Q1
@@ -92,26 +92,43 @@ class Program
         //    Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
         //}
 
-        var q4 = (from temp in orderList
-                  //join ptemp in productList 
-                  //on temp.ProductId equals ptemp.ProductId
-                  //join ctemp in customerList
-                  //on temp.CustomerId equals ctemp.CustomerId
-                  orderby temp.OrderDate
+        //Q5
+        //var q5 = from temp in orderList
+        //              //join ptemp in productList 
+        //              //on temp.ProductId equals ptemp.ProductId
+        //              //join ctemp in customerList
+        //              //on temp.CustomerId equals ctemp.CustomerId
+        //          orderby temp.OrderDate
+        //          group temp by temp.OrderDate;
+
+        //foreach (var item in q5)
+        //{
+
+        //    Console.WriteLine("Order Date(MM/DD/YYYY): {0}", item.Key);
+
+        //    foreach (var entry in item)
+        //    { Console.WriteLine("Order Id: {0}", entry.OrderId);
+        //    }
+
+        //}
+        
+        Q6
+        var q6 = (from temp in productList
+                  orderby temp.ProductQuantity
                   select new
                   {
-                      temp.OrderId,
-                      temp.OrderDate,
-                      temp.CustomerId,
-                      temp.ProductId
-                  }
-                   ).ToList();
-        foreach (var item in q4)
+                      temp.ProductId,
+                      temp.ProductName,
+                      temp.ProductDescription,
+                      temp.ProductQuantity
+                  }).ToList();
+
+        foreach (var item in q6)
         {
-            Console.WriteLine("\n\nOrder Id: {0}", item.OrderId);
-            Console.WriteLine("Order Date: {0}", item.OrderDate);
-            Console.WriteLine("Customer Id: {0}", item.CustomerId);
-            Console.WriteLine("Product Id: {0}", item.ProductId);
+            Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
+            Console.WriteLine("Product Name: {0}", item.ProductName);
+            Console.WriteLine("Product Description: {0}", item.ProductDescription);
+            Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
         }
     }
 
