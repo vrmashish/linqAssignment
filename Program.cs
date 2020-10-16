@@ -31,7 +31,7 @@ class Program
 
         foreach(Customer item in customerList)
         {
-            Console.WriteLine("Customer Id {0}", item.CustomerId);
+            Console.WriteLine("\n\nCustomer Id {0}", item.CustomerId);
             Console.WriteLine("Customer Name {0}", item.CustomerName);
             Console.WriteLine("Customer Address {0}", item.CustomerAddress);
         }
