@@ -8,7 +8,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<Product> productList = new List<Product>();
+        List<Product> productList = new List<Product>()
         {
         new Product() { ProductId = "P01", ProductName = "Tv", ProductDescription = "4K Tv", ProductQuantity = 100 },
         new Product() { ProductId = "P02", ProductName = "Remote", ProductDescription = "4K Tv Remote", ProductQuantity = 100 },
