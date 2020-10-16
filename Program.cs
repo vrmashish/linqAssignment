@@ -111,24 +111,42 @@ class Program
         //    }
 
         //}
+
+        //Q6
+        //var q6 = (from temp in productList
+        //          orderby temp.ProductQuantity
+        //          select new
+        //          {
+        //              temp.ProductId,
+        //              temp.ProductName,
+        //              temp.ProductDescription,
+        //              temp.ProductQuantity
+        //          }).ToList();
+
+        //foreach (var item in q6)
+        //{
+        //    Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
+        //    Console.WriteLine("Product Name: {0}", item.ProductName);
+        //    Console.WriteLine("Product Description: {0}", item.ProductDescription);
+        //    Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
+        //}
+
         
-        Q6
-        var q6 = (from temp in productList
-                  orderby temp.ProductQuantity
+        var q7 = (from temp in customerList
+                  join otemp in orderList
+                  on temp.CustomerId equals otemp.CustomerId
+                  join ptemp in productList
+                  on otemp.ProductId equals ptemp.ProductId
                   select new
                   {
-                      temp.ProductId,
-                      temp.ProductName,
-                      temp.ProductDescription,
-                      temp.ProductQuantity
+                      temp.CustomerName,
+                      ptemp.ProductName
                   }).ToList();
 
-        foreach (var item in q6)
+        foreach(var item in q7)
         {
-            Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
+            Console.WriteLine("Customer Name: {0}", item.CustomerName);
             Console.WriteLine("Product Name: {0}", item.ProductName);
-            Console.WriteLine("Product Description: {0}", item.ProductDescription);
-            Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
         }
     }
 
