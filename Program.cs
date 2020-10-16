@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ class Program
     {
         List<Product> productList = new List<Product>()
         {
-        new Product() { ProductId = "P01", ProductName = "Tv", ProductDescription = "4K Tv", ProductQuantity = 100 },
+        new Product() { ProductId = "P01", ProductName = "Tv", ProductDescription = "4K Tv", ProductQuantity = 45 },
         new Product() { ProductId = "P02", ProductName = "Remote", ProductDescription = "4K Tv Remote", ProductQuantity = 100 },
         new Product() { ProductId = "P03", ProductName = "SmartPhone", ProductDescription = "Android SmartPhone", ProductQuantity = 250 },
         new Product() { ProductId = "P04", ProductName = "SmartPhone Charger", ProductDescription = "4K Tv", ProductQuantity = 350 },
@@ -28,29 +30,89 @@ class Program
 
         List<Order> orderList = new List<Order>()
         {
-        new Order() { OrderId = "O01", OrderDate = "25 Oct 2020", CustomerId = "C02", ProductId = "P03" },
-        new Order() { OrderId = "O02", OrderDate = "3 Aug 2020", CustomerId = "C04", ProductId = "P04" },
-        new Order() { OrderId = "O03", OrderDate = "12 Oct 2020", CustomerId = "C01", ProductId = "P01" },
-        new Order() { OrderId = "O04", OrderDate = "7 Sep 2020", CustomerId = "C02", ProductId = "P04" },
-        new Order() { OrderId = "O05", OrderDate = "19 Sep 2020", CustomerId = "C05", ProductId = "P03" }
+        new Order() { OrderId = "O01", OrderDate = "10/25/2020", CustomerId = "C02", ProductId = "P03" },
+        new Order() { OrderId = "O02", OrderDate = "08/03/2020", CustomerId = "C04", ProductId = "P04" },
+        new Order() { OrderId = "O03", OrderDate = "10/12/2020", CustomerId = "C01", ProductId = "P01" },
+        new Order() { OrderId = "O04", OrderDate = "09/07/2020", CustomerId = "C02", ProductId = "P04" },
+        new Order() { OrderId = "O05", OrderDate = "09/19/2020", CustomerId = "C05", ProductId = "P03" }
         };
 
-        foreach (Product item in productList)
+        //Q1
+        //foreach (Product item in productList)
+        //{
+        //    Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
+        //    Console.WriteLine("Product Name: {0}", item.ProductName);
+        //    Console.WriteLine("Product Description: {0}", item.ProductDescription);
+        //    Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
+        //}
+
+        //Q2
+        //foreach (Customer item in customerList)
+        //{
+        //    Console.WriteLine("\n\nCustomer Id: {0}", item.CustomerId);
+        //    Console.WriteLine("Customer Name: {0}", item.CustomerName);
+        //    Console.WriteLine("Customer Address: {0}", item.CustomerAddress);
+        //}
+
+        //Q3
+        //var q3 = (from temp in productList
+        //          where temp.ProductQuantity > 100
+        //          select new
+        //          {
+        //              temp.ProductId,
+        //              temp.ProductName,
+        //              temp.ProductDescription,
+        //              temp.ProductQuantity
+        //          }
+        //           ).ToList();
+        //foreach(var item in q3)
+        //{
+        //    Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
+        //    Console.WriteLine("Product Name: {0}", item.ProductName);
+        //    Console.WriteLine("Product Description: {0}", item.ProductDescription);
+        //    Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
+        //}
+
+        //Q4
+        //var q4 = (from temp in productList
+        //          where temp.ProductQuantity > 10 && temp.ProductQuantity<50
+        //          select new
+        //          {
+        //              temp.ProductId,
+        //              temp.ProductName,
+        //              temp.ProductDescription,
+        //              temp.ProductQuantity
+        //          }
+        //           ).ToList();
+        //foreach (var item in q4)
+        //{
+        //    Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
+        //    Console.WriteLine("Product Name: {0}", item.ProductName);
+        //    Console.WriteLine("Product Description: {0}", item.ProductDescription);
+        //    Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
+        //}
+
+        var q4 = (from temp in orderList
+                  //join ptemp in productList 
+                  //on temp.ProductId equals ptemp.ProductId
+                  //join ctemp in customerList
+                  //on temp.CustomerId equals ctemp.CustomerId
+                  orderby temp.OrderDate
+                  select new
+                  {
+                      temp.OrderId,
+                      temp.OrderDate,
+                      temp.CustomerId,
+                      temp.ProductId
+                  }
+                   ).ToList();
+        foreach (var item in q4)
         {
-            Console.WriteLine("\n\nProduct Id: {0}", item.ProductId);
-            Console.WriteLine("Product Name: {0}", item.ProductName);
-            Console.WriteLine("Product Description: {0}", item.ProductDescription);
-            Console.WriteLine("Product Quantity: {0}", item.ProductQuantity);
+            Console.WriteLine("\n\nOrder Id: {0}", item.OrderId);
+            Console.WriteLine("Order Date: {0}", item.OrderDate);
+            Console.WriteLine("Customer Id: {0}", item.CustomerId);
+            Console.WriteLine("Product Id: {0}", item.ProductId);
         }
-
-        foreach (Customer item in customerList)
-        {
-            Console.WriteLine("\n\nCustomer Id: {0}", item.CustomerId);
-            Console.WriteLine("Customer Name: {0}", item.CustomerName);
-            Console.WriteLine("Customer Address: {0}", item.CustomerAddress);
-        }
-
-
     }
 
 }
